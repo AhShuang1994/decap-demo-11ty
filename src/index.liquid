@@ -1,0 +1,25 @@
+---
+layout: base.liquid
+title: 最新消息
+---
+<header>
+  <h1>Decap CMS 示範站（11ty 版）</h1>
+  <p>build-time 產生純 HTML · 每篇文章有獨立頁面 · SEO 友善</p>
+  <a class="admin-link" href="/admin/">✏️ 進入內容後台</a>
+</header>
+
+<main>
+  <div class="grid">
+    {%- assign posts = collections.news | reverse -%}
+    {% for post in posts %}
+      <a class="card" href="{{ post.url }}">
+        {% if post.data.thumbnail != "" %}<img src="{{ post.data.thumbnail }}" alt="">{% endif %}
+        <div class="body">
+          <time>{{ post.data.date | date: "%Y-%m-%d" }}</time>
+          <h3>{{ post.data.title }}</h3>
+          <p>{{ post.data.summary }}</p>
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+</main>

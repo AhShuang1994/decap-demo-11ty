@@ -1,0 +1,5 @@
+{
+  "tags": "news",
+  "layout": "post.liquid",
+  "permalink": "/news/{{ page.fileSlug }}/index.html"
+}

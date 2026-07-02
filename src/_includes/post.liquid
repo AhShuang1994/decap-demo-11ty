@@ -1,0 +1,12 @@
+---
+layout: base.liquid
+---
+<main>
+  <article class="post">
+    <time>{{ date | date: "%Y-%m-%d" }}</time>
+    <h1>{{ title }}</h1>
+    {% if thumbnail != "" %}<img src="{{ thumbnail }}" alt="">{% endif %}
+    {{ content }}
+    <a class="back" href="/">← 回列表</a>
+  </article>
+</main>

@@ -1,0 +1,34 @@
+# ── Decap CMS 設定檔（11ty 版）─────────────────────────────────────
+# 與動態版唯一差別：folder / media_folder 路徑改成 11ty 的目錄結構。
+# 後台本身和 OAuth Worker 完全相同。
+
+backend:
+  name: github
+  repo: AhShuang1994/decap-demo-11ty   # ← 改成你的 11ty repo
+  branch: main
+  base_url: https://decap-oauth.fastfix-demo.workers.dev   # ← Worker 可沿用同一個
+  auth_endpoint: /auth
+
+# 本地開發時打開，配合 `npx decap-server` 測介面
+# local_backend: true
+
+# 圖片：實體檔存進 src/assets/uploads（會被 11ty 原樣複製到輸出）
+media_folder: "src/assets/uploads"
+public_folder: "/assets/uploads"
+
+locale: "zh_Hant"
+
+collections:
+  - name: "news"
+    label: "最新消息"
+    label_singular: "一則消息"
+    folder: "src/news"          # ← 11ty 的內容位置
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{title}} — {{date | date('YYYY-MM-DD')}}"
+    fields:
+      - { label: "標題", name: "title", widget: "string" }
+      - { label: "發佈日期", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
+      - { label: "封面圖", name: "thumbnail", widget: "image", required: false }
+      - { label: "摘要", name: "summary", widget: "text", required: false }
+      - { label: "內文", name: "body", widget: "markdown" }
